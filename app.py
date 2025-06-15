@@ -92,7 +92,10 @@ async def predict_emotion(file: UploadFile = File(...)):
         # scaleFactor: Parameter specifying how much the image size is reduced at each image scale.
         # minNeighbors: Parameter specifying how many neighbors each candidate rectangle should have to retain it.
         # --- UPDATED: minNeighbors changed from 5 to 3 for broader detection ---
-        faces = face_cascade.detectMultiScale(cv_image_gray, scaleFactor=1.1, minNeighbors=3, minSize=(50, 50))
+        # --- UPDATED: minSize changed from (50,50) to (30,30) for broader detection ---
+        faces = face_cascade.detectMultiScale(cv_image_gray, scaleFactor=1.1, minNeighbors=3, minSize=(30, 30))
+
+        print(f"DEBUG: Number of faces detected: {len(faces)}") # <--- ADDED DEBUG PRINT
 
         if len(faces) == 0:
             # No face detected
