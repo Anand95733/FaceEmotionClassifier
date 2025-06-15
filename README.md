@@ -43,7 +43,7 @@ Before you begin, ensure you have the following installed:
 ### 2. Clone the Repository (or navigate to your project folder)
 If your project is hosted on a version control system like Git:
 ```bash
-git clone [https://github.com/yourusername/FaceEmotionClassifier.git](https://github.com/yourusername/FaceEmotionClassifier.git)  # Replace with your actual repository URL
+git clone https://github.com/Anand95733/FaceEmotionClassifier.git)
 cd FaceEmotionClassifier
 
 Anand, no, the README.md content you've provided is not yet enough for a complete and comprehensive guide for your project. It cuts off significantly after the "Clone the Repository" step.
@@ -139,7 +139,7 @@ Before you begin, ensure you have the following installed:
 ### 2. Clone the Repository (or navigate to your project folder)
 If your project is hosted on a version control system like Git:
 ```bash
-git clone [https://github.com/yourusername/FaceEmotionClassifier.git](https://github.com/yourusername/FaceEmotionClassifier.git)  # Replace with your actual repository URL
+git clone https://github.com/Anand95733/FaceEmotionClassifier.git
 cd FaceEmotionClassifier
 If you manually copied the files, simply open your terminal or command prompt and navigate to the FaceEmotionClassifier root directory.
 
