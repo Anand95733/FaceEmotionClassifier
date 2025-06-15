@@ -238,3 +238,16 @@ Ensure face_emotion_model.h5 exists in the project root directory. If it's missi
 Dependency Errors:
 Make sure your virtual environment is activated and you have run pip install -r requirements.txt successfully.
 Port Conflicts: If either server fails to start because a port is already in use, you might need to change the port in app.py (for FastAPI) or frontend_app.py (for Flask), or identify and stop the process using that port.
+
+![image](https://github.com/user-attachments/assets/6364a47b-19f5-4552-9aee-a653bf870992)
+
+![image](https://github.com/user-attachments/assets/703363b6-0bc6-48e1-8a5e-d63dad1b9521)
+
+![image](https://github.com/user-attachments/assets/595de2e3-953b-4828-a5ea-643a80d6639f)
+
+![image](https://github.com/user-attachments/assets/58bf6ac1-3ccb-4b6d-992a-79fdcecd4f30)
+
+![image](https://github.com/user-attachments/assets/1ef36cf7-2ddd-4c34-9866-52fdc6ba3a81)
+
+![image](https://github.com/user-attachments/assets/37564c6f-a371-4f0d-a69b-06a31a817ae5)
+
