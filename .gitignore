@@ -15,8 +15,10 @@ Thumbs.db
 *.log
 
 # Model files (if very large, consider Git LFS)
-# If face_emotion_model.h5 is > 100MB, add it here and use Git LFS later
-# face_emotion_model.h5
+face_emotion_model.h5  # UNCOMMENTED: This line MUST be active to ignore your model
+
+# Dataset files (usually very large, DO NOT COMMIT raw data)
+data/                  # ADDED: This line ignores your entire data directory
 
 # Cascade files (usually small enough to commit)
 # haarcascade_frontalface_default.xml
