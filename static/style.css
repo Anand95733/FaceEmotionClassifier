@@ -1,0 +1,614 @@
+/* Import Google Font (Poppins is a good choice for this theme) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Global box-sizing for consistent layout */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    /* Godhaar inspired colors */
+    --primary-green: #388E3C; /* Darker green for main actions/branding */
+    --light-green: #4CAF50; /* Lighter green for accents */
+    --background-light: #f8fcf8; /* Off-white, very light green background */
+    --text-dark: #333;
+    --text-light: #555;
+    --border-color: #e0e0e0;
+    --shadow-light: rgba(0, 0, 0, 0.08); /* Subtle shadow */
+    --shadow-medium: rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+    --card-bg: #ffffff;
+    --nav-bg: #ffffff;
+    --button-hover-bg: #2e7d32;
+    --error-color: #D32F2F;
+    --success-color: var(--primary-green);
+    --info-color: #2196F3; /* A blue for info messages/buttons */
+
+    /* New emotion colors */
+    --sad-color: #808080; /* Gray for Sad */
+    --happy-color: #FFB6C1; /* Light Pink for Happy (as an example pastel) */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    background-color: var(--background-light);
+    margin: 0;
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%; /* Ensure body takes full width */
+}
+
+/* Navbar Styling */
+.navbar {
+    width: 100%;
+    background-color: var(--nav-bg);
+    box-shadow: 0 2px 8px var(--shadow-light);
+    padding: 15px 5%; /* Use percentage for horizontal padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    min-width: 320px; /* Prevent shrinking too much */
+}
+
+.navbar-brand img {
+    height: 40px;
+    filter: brightness(0.9) saturate(1.2);
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 1.05em;
+    padding: 5px 0;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    color: var(--primary-green);
+    border-bottom: 2px solid var(--primary-green);
+}
+
+/* Main Content Styling (Adjusted for navbar) */
+.main-content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px; /* Space for fixed navbar */
+    width: 100%;
+    max-width: 1200px; /* Max width for the entire content area */
+    margin: 0 auto; /* Center the wrapper */
+}
+
+.container {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px var(--shadow-medium);
+    text-align: center;
+    width: 90%; /* Responsive width */
+    max-width: 800px; /* Consistent max-width for all main content cards */
+    margin: 40px auto; /* Centered with vertical margin */
+    border: none;
+}
+
+/* Styling for sections hidden/shown by JS */
+.main-content-wrapper > .container { /* Target all top-level sections/containers within the wrapper */
+    display: none; /* Hide all sections by default */
+    opacity: 0; /* Start hidden for fade-in */
+    pointer-events: none; /* Disable interactions when hidden */
+}
+
+.main-content-wrapper > .container.active-section {
+    display: block; /* Show the active section */
+    opacity: 1; /* Fade in */
+    pointer-events: auto; /* Enable interactions when visible */
+    transition: opacity 0.5s ease-in-out; /* Smooth transition for fading */
+}
+
+/* Specific section styles */
+section.container {
+    padding: 30px 40px;
+    text-align: left;
+    margin-top: 50px;
+    max-width: 800px;
+}
+
+section.container h2 {
+    color: var(--primary-green);
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--light-green);
+    padding-bottom: 10px;
+}
+
+section.container p {
+    color: var(--text-dark);
+    font-size: 1.0em;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+section.container ul {
+    list-style-type: disc;
+    padding-left: 25px;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+section.container ul li {
+    margin-bottom: 8px;
+}
+
+/* Main Prediction Form elements */
+h1 {
+    color: var(--primary-green);
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+input[type="file"] {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #fefefe;
+    cursor: pointer;
+    font-size: 1.05em;
+    color: var(--text-light);
+    text-align: left;
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);
+}
+input[type="file"]::-webkit-file-upload-button {
+    visibility: hidden;
+}
+input[type="file"]::before {
+    content: 'Choose File';
+    display: inline-block;
+    background: var(--light-green);
+    color: white;
+    border-radius: 6px;
+    padding: 8px 15px;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    font-weight: 500;
+    margin-right: 15px;
+    transition: background-color 0.3s ease;
+}
+input[type="file"]:hover::before {
+    background-color: var(--primary-green);
+}
+input[type="file"]:active {
+    border-color: var(--primary-green);
+    background-color: #f0f0f0;
+}
+
+button {
+    background-color: var(--primary-green);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    max-width: 250px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+button:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+
+#result {
+    margin-top: 30px;
+    font-size: 1.5em;
+    font-weight: 600;
+    min-height: 2.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+/* Dynamic colors for predicted text */
+.predicted-emotion.Sad {
+    color: var(--sad-color); /* Gray for Sad */
+}
+
+.predicted-emotion.Happy {
+    color: var(--happy-color); /* Light Pink for Happy */
+}
+
+#result.error {
+    color: var(--error-color);
+}
+
+#result.success {
+    color: var(--success-color);
+}
+
+#uploaded-image {
+    max-width: 300px;
+    max-height: 300px;
+    margin-top: 30px;
+    border: 3px solid var(--light-green);
+    border-radius: 12px;
+    object-fit: contain;
+    box-shadow: 0 6px 20px var(--shadow-light);
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--primary-green);
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Styling for the Profile Picture in About Me section */
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 20px auto;
+    display: block;
+    border: 4px solid var(--primary-green);
+    box-shadow: 0 4px 15px var(--shadow-light);
+    transition: transform 0.3s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.05);
+}
+
+/* NEW STYLES FOR PREDICTION HISTORY GALLERY */
+
+/* Clear History Button */
+button.clear-button {
+    background-color: var(--info-color); /* Use a distinct color for clear */
+    margin-top: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+button.clear-button:hover {
+    background-color: #1976D2; /* Darker blue on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+#no-history-message {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 1.1em;
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px dashed var(--border-color);
+    border-radius: 8px;
+    background-color: #fcfcfc;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 30px; /* Space between items */
+    width: 100%;
+    margin-top: 30px;
+    padding: 20px;
+    justify-items: center; /* Center items in their grid cells */
+}
+
+.history-item {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    overflow: hidden; /* Ensures rounded corners on image */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%; /* Take full width of grid cell */
+    max-width: 300px; /* Ensure max size for an item */
+}
+
+.history-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--shadow-medium);
+}
+
+.history-thumbnail {
+    width: 120px; /* Size for thumbnail */
+    height: 120px;
+    border-radius: 8px; /* Slightly rounded corners for image */
+    object-fit: cover; /* Crop to fit, maintain aspect ratio */
+    border: 2px solid var(--light-green);
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.history-details {
+    width: 100%;
+    text-align: center;
+}
+
+.history-details p {
+    margin: 5px 0;
+    font-size: 0.95em;
+    color: var(--text-dark);
+}
+
+.history-details strong {
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+.history-details .timestamp {
+    font-size: 0.85em;
+    color: var(--text-light);
+    margin-top: 10px;
+}
+
+.history-probability-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    border-top: 1px dashed var(--border-color);
+    padding-top: 10px;
+    text-align: left; /* Align probabilities left within the detail box */
+}
+
+.history-probability-list li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+    padding: 3px 0;
+    color: var(--text-dark);
+}
+
+.history-probability-list li span {
+    font-weight: 500;
+    color: var(--primary-green);
+}
+
+/* Responsive adjustments for gallery */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Smaller items on tablet */
+        gap: 20px;
+    }
+    .history-thumbnail {
+        width: 100px;
+        height: 100px;
+    }
+    .history-item {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr; /* Single column on very small phones */
+        gap: 20px;
+    }
+    .history-item {
+        max-width: 90%; /* Take more width on small screens */
+    }
+}
+.feedback-message {
+    margin-top: 15px;
+    font-size: 0.95em;
+    color: var(--text-light); /* Or a specific info color */
+}
+
+.feedback-message small {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.feedback-button {
+    background-color: var(--info-color); /* Use a nice blue for info/feedback */
+    color: white;
+    padding: 8px 15px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    margin-top: 10px;
+    /* Inherits from general button styles, but customize as needed */
+}
+
+.feedback-button:hover {
+    background-color: #1976D2; /* Darker blue on hover */
+}
+
+/* --- NEW STYLES FOR LIVE WEBCAM PREDICTION SECTION --- */
+
+#live-prediction-section {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column;
+    align-items: center;
+    gap: 25px; /* Space between webcam elements */
+    padding: 30px; /* Adjust padding for live section */
+    max-width: 900px; /* Allow wider for video */
+}
+
+#live-prediction-section h1 {
+    margin-bottom: 0; /* Adjust spacing */
+}
+
+.webcam-controls {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+    justify-content: center;
+    width: 100%;
+}
+
+.webcam-controls button {
+    flex-grow: 1; /* Allow buttons to grow */
+    max-width: 200px; /* Limit button size */
+}
+
+/* Style for the video feed itself */
+.webcam-feed {
+    position: relative;
+    width: 100%;
+    max-width: 640px; /* Standard webcam width */
+    aspect-ratio: 4/3; /* Common webcam aspect ratio */
+    background-color: #000; /* Black background for video area */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px var(--shadow-medium);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid var(--primary-green); /* Green border for the feed */
+}
+
+#webcam-feed {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the area, cropping if necessary */
+    transform: scaleX(-1); /* Mirror the webcam feed for natural view */
+}
+
+/* Style for the live prediction results */
+.live-result {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 500;
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    background-color: var(--background-light);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.live-result p {
+    margin: 0;
+    font-size: 1em; /* Reset paragraph font size */
+    text-align: center; /* Center text within result box */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+#webcam-status {
+    font-size: 0.9em;
+    color: var(--text-light);
+}
+
+#live-emotion {
+    font-weight: 700;
+    font-size: 1.2em;
+}
+
+#live-confidence {
+    font-weight: 600;
+    color: var(--primary-green);
+}
+
+/* Apply emotion colors to live prediction */
+#live-emotion .predicted-emotion.Sad {
+    color: var(--sad-color);
+}
+
+#live-emotion .predicted-emotion.Happy {
+    color: var(--happy-color);
+}
+
+/* Responsive adjustments for live prediction section */
+@media (max-width: 600px) {
+    #live-prediction-section {
+        padding: 20px;
+        gap: 15px;
+    }
+    .webcam-feed {
+        max-width: 95%; /* Adjust width on smaller screens */
+    }
+    .webcam-controls button {
+        max-width: 100%; /* Stack buttons vertically */
+    }
+    .live-result {
+        font-size: 1.2em;
+    }
+}

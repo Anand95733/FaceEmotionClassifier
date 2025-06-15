@@ -1,0 +1,25 @@
+# Python virtual environment
+venv/
+*.pyc
+__pycache__/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Model files (if very large, consider Git LFS)
+# If face_emotion_model.h5 is > 100MB, add it here and use Git LFS later
+# face_emotion_model.h5
+
+# Cascade files (usually small enough to commit)
+# haarcascade_frontalface_default.xml
+
+# Environment variables or sensitive data
+.env

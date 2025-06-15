@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Emotion Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='godhaar_icon.png') }}" type="image/png">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="navbar-brand">
+            <img src="{{ url_for('static', filename='godhaar_logo.png') }}" alt="Godhaar Logo">
+        </a>
+        <ul class="nav-links">
+            <li><a href="#" data-section="main-prediction-section" class="active">Image Prediction</a></li>
+            <li><a href="#" data-section="live-prediction-section">Live Prediction</a></li> <li><a href="#" data-section="prediction-history-section">Prediction History</a></li>
+            <li><a href="#" data-section="project-info">Project Info</a></li>
+            <li><a href="#" data-section="about-me">About Me</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content-wrapper">
+
+        <section id="main-prediction-section" class="container active-section">
+            <h1>Upload a Face Image</h1>
+            <form id="upload-form">
+                <input type="file" id="image-upload" accept="image/*">
+                <button type="submit">Predict Emotion</button>
+            </form>
+            <img id="uploaded-image" src="" alt="Uploaded Image Preview">
+            <div id="result"></div>
+        </section>
+
+        <section id="live-prediction-section" class="container">
+            <h1>Live Webcam Emotion Prediction</h1>
+            <div class="webcam-controls">
+                <button id="start-webcam-btn">Start Webcam</button>
+                <button id="stop-webcam-btn" disabled>Stop Webcam</button>
+            </div>
+            <div class="webcam-feed">
+                <video id="webcam-feed" autoplay muted playsinline></video>
+                <canvas id="webcam-canvas" style="display:none;"></canvas> </div>
+            <div id="live-result" class="live-result">
+                <p>Status: <span id="webcam-status">Webcam Ready</span></p>
+                <p>Emotion: <strong id="live-emotion">N/A</strong></p>
+                <p>Confidence: <span id="live-confidence">N/A</span></p>
+            </div>
+        </section>
+        <section id="prediction-history-section" class="container">
+            <h2>Prediction History</h2>
+            <button id="clear-history-btn" class="clear-button">Clear History</button>
+            <div id="history-gallery" class="gallery-grid">
+                <p id="no-history-message">No prediction history yet. Upload an image to start!</p>
+            </div>
+        </section>
+
+        <section id="project-info" class="container">
+            <h2>About This Project</h2>
+            <p>
+                This project demonstrates a simple Face Emotion Classifier built using a Convolutional Neural Network (CNN) in TensorFlow/Keras, exposed via a FastAPI backend, and consumed by a Flask web frontend.
+            </p>
+            <h3>Key Features:</h3>
+            <ul>
+                <li><strong>Emotion Classification:</strong> Identifies "Happy" or "Sad" emotions from uploaded face images.</li>
+                <li><strong>MERN-like Stack:</strong> Utilizes MongoDB (conceptual, if storing data), Express (Node.js/FastAPI equivalent for backend), React (Flask/HTML/JS equivalent for frontend), and Node.js (FastAPI/Python backend).</li>
+                <li><strong>RESTful API:</strong> The backend provides a clean API for image prediction.</li>
+                <li><strong>Real-time Feedback:</strong> Displays predicted emotion and confidence instantly.</li>
+                <li><strong>User-Friendly Interface:</strong> A simple and intuitive web interface for image uploads.</li>
+            </ul>
+            <h3>Technologies Used:</h3>
+            <ul>
+                <li><strong>Frontend:</strong> HTML, CSS, JavaScript, Flask</li>
+                <li><strong>Backend:</strong> Python (FastAPI), TensorFlow, Keras, NumPy, Pillow</li>
+                <li><strong>Deployment:</strong> Uvicorn (ASGI server for FastAPI)</li>
+            </ul>
+        </section>
+
+        <section id="about-me" class="container">
+            <h2>About Me</h2>
+            <img class="profile-pic" src="{{ url_for('static', filename='profile-pic.png') }}" alt="Anand Kumar E">
+            <p>
+                Hi, I'm Anand! I hold a B.Tech degree with 82% and am currently enhancing my skills at NxtWave in full stack development. I'm deeply passionate about using the MERN stack—MongoDB, Express, React, and Node.js—to build practical solutions.
+            </p>
+            <p>
+                I've worked on a real-world appointment booking system, implementing features like dynamic time slot checking and double-booking prevention using TypeScript and RESTful APIs. These experiences helped me tackle backend logic and user interaction challenges.
+            </p>
+            <p>
+                Outside of coding, I run a YouTube channel called <a href="https://www.youtube.com/@zenscholars" target="_blank" rel="noopener noreferrer">Zen Scholars</a>, where I create kid-friendly motivational stories and songs using tools like Steve AI and Media.ai. I love learning about new technologies and solving aptitude challenges using smart shortcuts. I’m confident in both my technical and communication skills, and I’m eager to contribute to a collaborative, growth-driven environment.
+            </p>
+        </section>
+
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
